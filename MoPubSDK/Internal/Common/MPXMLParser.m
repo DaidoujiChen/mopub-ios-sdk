@@ -37,6 +37,11 @@
     NSXMLParser *parser = [[NSXMLParser alloc] initWithData:data];
     [parser setDelegate:self];
     [parser parse];
+    
+    if (self.parseError) {
+        *error = self.parseError;
+        return nil;
+    }
     return self.elementStack[0];
 }
 
